@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="./styles/style123.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/tailwind.css">
+    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard Sidebar Menu</title> 
+</head>
+<body id="dark2">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="./img/<%= patientD[0].puname + img%>" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name"><%= patientD[0].pname %></span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="/appointment">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Book Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="viewappointment.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">View Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/updatedDetails">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">update details</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/viewDoc">
+                            <i class='bx bx-heart icon' ></i>
+                            <span class="text nav-text">view Doctors</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-wallet icon' ></i>
+                            <span class="text nav-text">Receipt of Payment
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <main class="flex-grow container mx-auto py-12 px-4">
+            <h1 class="text-4xl font-bold mb-8 text-center">Find a Doctor by Specialty</h1>
+            <form action="/viewDoc" method="post" class="max-w-lg mx-auto">
+              <div class="relative mb-6">
+                <select id="specialty" name="specialty" class="block appearance-none w-full bg-gray-200 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 focus:shadow-outline">
+                  <option value="" selected disabled>Select a Specialty</option>
+                  <% for (let index = 0; index < depa.length; index++) { %>
+                    <option><%= depa[index].department %></option>
+                  <% } %>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M5 8l5 5 5-5H5z"></path>
+                  </svg>
+                </div>
+              </div>
+              <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Search
+              </button>
+            </form>
+            
+          </main> 
+
+          <div class="flex flex-col justify-center items-center">
+            <div class="-m-1.5 overflow-x-auto">
+              <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class=" rounded-lg  overflow-hidden dark:border-gray-700 dark:shadow-gray-900">
+                   <table class="table-auto w-1/2 mx-auto">
+                    <thead>
+                      <tr>
+                        <th class=" px-4 py-2 ">#</th>
+                        <th class="px-4 py-2  ">First Name</th>
+                        <th class="px-4 py-2  ">Last Name</th>
+                        <th class="px-4 py-2 ">Email</th>
+                        <th class="px-4 py-2 ">See Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let index = 0; index < doctorDetails.length; index++) { %>  
+                            <tr>
+                              <form action="/docDetails" method="post">
+                                  <input type="text" name="<%= doctorDetails[index].d_id %>" style="display: none;">
+                                  <th scope="row"><%= index+1 %></th>
+                                  <td><%= doctorDetails[index].d_id %></td>
+                                  <td><%= doctorDetails[index].dname %></td>
+                                  <td><%= doctorDetails[index].department %></td>
+                                  <td>
+                                      <button type="submit" class="btn btn-primary">Details</button>
+                                  </td>
+                              </form>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                  </table> 
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </section>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/script123.js"></script>
+</body>
+</html>

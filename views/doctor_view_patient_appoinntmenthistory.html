@@ -1,0 +1,202 @@
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="style123.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Dashboard Sidebar Menu</title> 
+</head>
+<body id="dark2">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQ2wPmYNixF92zIj_LsxSjjJQ7vO3CdccFkVEdKIvofULXBOwzb-Ef1bYv11mkcW5SJ" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">John Doe</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Book Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="viewappointment.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">View Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">update details</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="viewdoctor.html">
+                            <i class='bx bx-heart icon' ></i>
+                            <span class="text nav-text">view Doctors</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-wallet icon' ></i>
+                            <span class="text nav-text">Receipt of Payment
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+
+<section class="home ">
+    <div class=" rounded-lg shadow-md p-8">
+        <h1 class="text-3xl font-semibold mb-6">Patient Appointment History</h1>
+        <form class="flex items-center">
+          <input
+            type="text"
+            placeholder="Enter Patient Name or ID"
+            class="flex-grow py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            type="submit"
+            class="bg-blue-500 text-white py-2 px-4 ml-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Search
+          </button>
+        </form>
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold mb-4">Patient Appointments</h2>
+          <table class="w-full border-collapse">
+            <thead class="rounded-md">
+              <tr class="bg-blue-300">
+                <th class="py-3 px-6 text-left">Patient Name</th>
+                <th class="py-3 px-6 text-left">Appointment Date</th>
+                <th class="py-3 px-6 text-left">Appointment Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t">
+                <td class="py-4 px-6 text-left">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Patient Profile Picture"
+                        class="w-10 h-10 rounded-full object-cover mr-4"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold">John Smith</h3>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-4 px-6 text-left">April 5, 2023</td>
+                <td class="py-4 px-6 text-left">3:00 PM</td>
+              </tr>
+              <tr class="border-t">
+                <td class="py-4 px-6 text-left">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Patient Profile Picture"
+                        class="w-10 h-10 rounded-full object-cover mr-4"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold">Jane Doe</h3>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-4 px-6 text-left">March 28, 2023</td>
+                <td class="py-4 px-6 text-left">10:30 AM</td>
+              </tr>
+              <tr class="border-t">
+                <td class="py-4 px-6 text-left">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                      <img
+                        src="https://via.placeholder.com/40"
+                        alt="Patient Profile Picture"
+                        class="w-10 h-10 rounded-full object-cover mr-4"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold">Michael Johnson</h3>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-4 px-6 text-left">March 20, 2023</td>
+                <td class="py-4 px-6 text-left">2:45 PM</td>
+              </tr>
+              <!-- Additional rows for patient appointments can be added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+</section>
+
+ 
+ 
+<script src="script123.js"></script>
+
+    
+</body>
+</html>
+
+
+

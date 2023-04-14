@@ -1,0 +1,156 @@
+<!-- Coding by CodingLab | www.codinglabweb.com -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="style123.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Dashboard Sidebar Menu</title> 
+</head>
+<body id="dark2">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQ2wPmYNixF92zIj_LsxSjjJQ7vO3CdccFkVEdKIvofULXBOwzb-Ef1bYv11mkcW5SJ" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">John Doe</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Book Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="viewappointment.html">
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                            <span class="text nav-text">View Appointment</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">update details</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="viewdoctor.html">
+                            <i class='bx bx-heart icon' ></i>
+                            <span class="text nav-text">view Doctors</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-wallet icon' ></i>
+                            <span class="text nav-text">Receipt of Payment
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
+        </div>
+
+    </nav>
+
+    <section class="home">
+        <main class="flex-grow container mx-auto py-12 px-4">
+            <h1 class="text-4xl font-bold mb-8 text-center">Take a look at your appointment record
+            </h1>
+          </main> 
+
+          <div class="flex flex-col justify-center items-center">
+            <div class="-m-1.5 overflow-x-auto">
+              <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class=" rounded-lg  overflow-hidden dark:border-gray-700 dark:shadow-gray-900">
+                   <table class="table-auto w-1/2 mx-auto">
+                    <thead>
+                      <tr>
+                        <th class=" px-4 py-2 bg-blue-300">#</th>
+                        <th class="px-4 py-2  ">First Name</th>
+                        <th class="px-4 py-2  ">Last Name</th>
+                        <th class="px-4 py-2 ">Email</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="border px-4 py-2 dark:border-black">1</td>
+                        <td class="border px-4 py-2 dark:border-black">John</td>
+                        <td class="border px-4 py-2 dark:border-black">Doe</td>
+                        <td class="border px-4 py-2 dark:border-black">johndoe@example.com</td>
+                      </tr>
+                      <tr>
+                        <td class="border px-4 py-2 dark:border-black">2</td>
+                        <td class="border px-4 py-2 dark:border-black">Jane</td>
+                        <td class="border px-4 py-2 dark:border-black">Doe</td>
+                        <td class="border px-4 py-2 dark:border-black">janedoe@example.com</td>
+                      </tr>
+                      <tr>
+                        <td class="border px-4 py-2 dark:border-black">3</td>
+                        <td class="border px-4 py-2 dark:border-black">Bob</td>
+                        <td class="border px-4 py-2 dark:border-black">Smith</td>
+                        <td class="border px-4 py-2 dark:border-black">bobsmith@example.com</td>
+                      </tr>
+                    </tbody>
+                  </table> 
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </section>
+
+    <script src="script123.js"></script>
+
+    
+</body>
+</html>

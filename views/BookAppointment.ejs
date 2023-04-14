@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Login</title>
+
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   
+  
+</head>
+
+<body class="bg-deepBlue ">
+  <div class="flex flex-col items-center justify-center min-h-screen">
+      <div class="w-1/2 bg-white p-10 rounded-md shadow-lg">
+        <div class="flex flex-col items-center">
+          <form class="w-3/4 max-w-md">
+            <h1 class="text-4xl text-center mb-8">Book Appointment</h1>
+            <div class="mb-4">
+              <label for="department" class="block text-gray-700 font-bold mb-2">
+                Department
+              </label>
+              <div class="relative">
+                <select id="department" name="department" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                  <option>Select a department</option>
+                  <% for (let index = 0; index < dep.length; index++) { %>
+                    <option><%= dep[index].department %></option>
+                  <% } %>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9 11l3-3 3 3m0 6l-3-3-3 3" />
+                  </svg>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center">
+                  <button type="submit" class="" style="position: absolute; padding-left: 7px;">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="doctor" class="block text-gray-700 font-bold mb-2">
+                Doctor
+              </label>
+              <div class="relative">
+                <select id="doctor" name="doctor" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" disabled>
+                  <option>Select a doctor</option>
+                  <option>Dr. Smith</option>
+                  <option>Dr. Johnson</option>
+                  <option>Dr. Lee</option>
+                  <option>Dr. Gupta</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9 11l3-3 3 3m0 6l-3-3-3 3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="date" class="block text-gray-700 font-bold mb-2">
+                Date
+              </label>
+              <input type="date" id="date" name="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" disabled>
+            </div>
+            <div class="mb-4">
+              <label for="slot" class="block text-gray-700 font-bold mb-2">
+                Time slot
+              </label>
+              <div class="grid grid-cols-3 gap-4">
+                <button  id="button1"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  09:00 PM
+                </button>
+                <button   id="button2"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  10:00 AM
+                </button>
+                <button    id="button3" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  11:00 AM
+                </button>
+                <button  id="button4"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  12:00 PM
+                </button>
+                <button   id="button5"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  01:00 PM
+                </button>
+                <button   id="button6" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  2:00 PM
+                </button>
+                <button  id="button7"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  5:00 PM
+                </button>
+                <button  id="button8"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  6:00 PM
+                </button>
+                <button  id="button9" id="myButton" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                  7:00 PM
+                </button>
+
+              </div>
+            </div>
+            <button  type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px- rounded-xl text-xl">
+              Book Appointment
+            </button>
+              </form>
+            </div>        
+
+      </div>
+  </div>
+    
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  let selectedButton = null;
+  let selectedValue = null;
+  const buttons = document.querySelectorAll(".button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // unselect previously selected button
+      if (selectedButton && selectedButton !== button) {
+        selectedButton.classList.remove("bg-blue-500", "text-white", "font-bold");
+      }
+      // toggle selected state of clicked button
+      button.classList.toggle("bg-blue-500");
+      button.classList.toggle("text-white");
+      button.classList.toggle("font-bold");
+      // update selected button and value variables
+      if (button.classList.contains("bg-blue-500")) {
+        selectedButton = button;
+        selectedValue = button.getAttribute("data-value");
+      } else {
+        selectedButton = null;
+        selectedValue = null;
+      }
+    });
+  });
+</script> 
+<script src="https://kit.fontawesome.com/22cb3c6d59.js" crossorigin="anonymous"></script>
+</body>
+</head>
+</html> 
+ 
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Doctor by Specialty</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-q6Atn15pwZ2/1Y/NTahs7jAMsbyXPNyN17YZprTzT+TECLb0rJxnmnJqb61z9XeqsdpZK1IlQr1fmiitMx+Teg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-gray-100 text-gray-900">
+   
+    
+    <main class="flex-grow container mx-auto py-12 px-4">
+      <h1 class="text-4xl font-bold mb-8 text-center">Find a Doctor by Specialty</h1>
+      <form action="#" method="GET" class="max-w-lg mx-auto">
+        <div class="relative mb-6">
+          <select id="specialty" name="specialty" class="block appearance-none w-full bg-gray-200 border border-gray-300 text-gray-900 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 focus:shadow-outline">
+            <option value="" selected disabled>Select a Specialty</option>
+            <% for (let index = 0; index < dep.length; index++) { %>
+              <option><%= dep[index].department %></option>
+            <% } %>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M5 8l5 5 5-5H5z"></path>
+            </svg>
+          </div>
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Search
+        </button>
+      </form>
+    </main> 
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+</body> -->

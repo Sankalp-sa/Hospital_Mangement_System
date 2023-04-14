@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registration Form in HTML CSS</title>
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.1/dist/tailwind.min.css">
+  </head>
+  <body class=" bg-blue-100">
+   <div class="flex flex-col items-center justify-center min-h-screen">
+
+    <div class="w-1/2 bg-white  mx-auto p-6 rounded-md shadow-md">
+      <h1 class="text-2xl font-medium text-center">Patient Registeration Form</h1>
+      <form action="#" class="mt-6">
+        <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
+          <div class="flex-grow">
+            <label class="block mb-2 text-sm font-medium text-gray-700" for="phone_number">Name</label>
+            <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black" type="name" id="name" placeholder="Enter your name" required />
+          </div>
+          <div class="flex-grow">
+            <label class="block mb-2 text-sm font-medium text-gray-700" for="birth_date">Username</label>
+            <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black" type="name" id="username" placeholder="Enter your username" required />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="block mb-2 text-sm font-medium text-gray-700" for="email_address">Email Address</label>
+          <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black" type="email" id="email_address" placeholder="Enter email address" required />
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
+          <div class="flex-grow">
+            <label class="block mb-2 text-sm font-medium text-gray-700" for="phone_number">Phone Number</label>
+            <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black" type="tel" id="phone_number" placeholder="Enter phone number" required />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <h3 class="text-sm font-medium text-gray-700 mb-2">Gender</h3>
+          <div class="flex items-center space-x-4">
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="gender" value="male" checked>
+              <span class="ml-2">Male</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="gender" value="female">
+              <span class="ml-2">Female</span>
+            </label>
+            <label class="inline-flex items-center">
+              <input type="radio" class="form-radio" name="gender" value="other">
+              <span class="ml-2">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <label class="block mb-2 text-sm font-medium text-gray-700" for="address">Address</label>
+        <textarea id="address" name="address" class="resize-none border rounded-md py-2 px-3 text-gray-700 leading-tight  focus:outline-none focus:border-black w-full" placeholder="Enter your address"></textarea>
+        <div class="flex flex-col sm:flex-row sm:space-x-4 mb-3">
+         
+        <div class="flex-grow">
+          <label class="block mb-2 text-sm font-medium text-gray-700" for="password">Password</label>
+          <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black myInput" type="password"  id="password" placeholder="Password" required  />
+        </div> 
+
+        <div class="flex-grow">
+          <label class="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
+          <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black myInput" type="password" id="confirmPassword"  placeholder="Confirm Password" required />
+        </div>
+
+      </div> 
+      <input type="checkbox" class="text-sm font-medium text-gray-700" onclick="myFunction()">Show Password
+      <div class="flex-grow my-5">
+        <label class="block mb-2 text-sm font-medium text-gray-700">Upload Your photo</label>
+        <input class="w-full p-2 border rounded-md focus:outline-none focus:border-black myInput" type="file" id="image" name="pImage" required />
+      </div>
+      
+
+
+      <button type="submit" class="w-full py-2 px-4 bg-blue-300 hover:bg-blue-400 text-black rounded-md focus:outline-none text-2xl" id="submitBtn">Register</button>
+      </form>
+    </div>
+    </div> 
+    
+<script>
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
+const submitBtn = document.getElementById('submitBtn');
+
+submitBtn.addEventListener('click', (e) => {
+  if (password.value !== confirmPassword.value) {
+    e.preventDefault();
+    alert('Password and Confirm Password fields do not match!');
+  }
+});
+function myFunction() {
+  var x = document.getElementsByClassName("myInput");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].type === "password") {
+      x[i].type = "text";
+    } else {
+      x[i].type = "password";
+    }
+  }
+}
+
+</script>
+  </body>
+  </html>

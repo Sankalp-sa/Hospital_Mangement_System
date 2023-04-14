@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style123.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/tailwind.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body id="dark2">
+    <!-- Profile -->
+      <nav class="sidebar close">
+          <header>
+              <div class="image-text">
+                  <span class="image">
+                      <img src="./img/<%= patientD[0].puname + img%>" alt="">
+                  </span>
+  
+                  <div class="text logo-text">
+                      <span class="name"><%= patientD[0].pname %></span>
+                  </div>
+              </div>
+  
+              <i class='bx bx-chevron-right toggle'></i>
+          </header>
+  
+          <div class="menu-bar">
+              <div class="menu">
+  
+                  <ul class="menu-links">
+                      <li class="nav-link">
+                          <a href="/appointment">
+                              <i class='bx bx-home-alt icon' ></i>
+                              <span class="text nav-text">Book Appointment</span>
+                          </a>
+                      </li>
+  
+                      <li class="nav-link">
+                          <a href="viewappointment.html">
+                              <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                              <span class="text nav-text">View Appointment</span>
+                          </a>
+                      </li>
+  
+                      <li class="nav-link">
+                          <a href="/updatedDetails">
+                              <i class='bx bx-bell icon'></i>
+                              <span class="text nav-text">update details</span>
+                          </a>
+                      </li>
+  
+                      <li class="nav-link">
+                          <a href="/viewDoc">
+                              <i class='bx bx-heart icon' ></i>
+                              <span class="text nav-text">view Doctors</span>
+                          </a>
+                      </li>
+  
+                      <li class="nav-link">
+                          <a href="#">
+                              <i class='bx bx-wallet icon' ></i>
+                              <span class="text nav-text">Receipt of Payment
+                              </span>
+                          </a>
+                      </li>
+  
+                  </ul>
+              </div>
+  
+              <div class="bottom-content">
+                  <li class="">
+                      <a href="#">
+                          <i class='bx bx-log-out icon' ></i>
+                          <span class="text nav-text">Logout</span>
+                      </a>
+                  </li>
+  
+                  <li class="mode">
+                      <div class="sun-moon">
+                          <i class='bx bx-moon icon moon'></i>
+                          <i class='bx bx-sun icon sun'></i>
+                      </div>
+                      <span class="mode-text text">Dark mode</span>
+  
+                      <div class="toggle-switch">
+                          <span class="switch"></span>
+                      </div>
+                  </li>
+                  
+              </div>
+          </div>
+  
+      </nav>
+
+  <!-- book apppointment -->
+  <div class="w-1/2 m-auto flex flex-col items-center justify-center min-h-screen">
+    <div class="w-full bg-white p-10 rounded-md shadow-lg">
+      <div class="flex flex-col items-center">
+        <form class="w-full max-w-md" action="/enableDoc" method="post">
+          <h1 class="text-4xl text-center mb-8">Book Appointment</h1>
+          <div class="mb-4">
+            <label for="department" class="block text-gray-700 font-bold mb-2">
+              Department
+            </label>
+            <div class="relative">
+                <select onchange="click(this.value)" id="department" name="department" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                  <option value="0"><%= department %></option>
+                  <% for (let index = 0; index < dep.length; index++) { %>
+                    <option value="<%= dep[index].department %>">
+                      <%= dep[index].department %>
+                    </option>
+                  <% } %>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M9 11l3-3 3 3m0 6l-3-3-3 3" />
+                  </svg>
+                </div>
+                <button type="submit" id="depBtn" style="display: none; position: absolute; padding-left: 7px;">Submit</button> 
+            </div>
+          </div>
+        </form>
+        <form class="w-3/4 max-w-md" action="/enableTime" method="post">
+          <div class="mb-4">
+            <label for="doctor" class="block text-gray-700 font-bold mb-2">
+              Doctor
+            </label>
+            <div class="relative">
+              <select id="doctor" name="doctor" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                <option>Select a doctor</option>
+                <% for (let index = 0; index < docDetails.length; index++) { %>
+                    <option value="<%= docDetails[index].dname %>">
+                        <%= docDetails[index].dname %>
+                    </option>
+                <% } %>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9 11l3-3 3 3m0 6l-3-3-3 3" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </form>
+          <div class="mb-4">
+            <label for="date" class="block text-gray-700 font-bold mb-2">
+              Date
+            </label>
+            <input type="date" id="date" name="date" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+          </div>
+          <div class="mb-4">
+            <label for="slot" class="block text-gray-700 font-bold mb-2">
+              Time slot
+            </label>
+            <div class="grid grid-cols-3 gap-4">
+              <button  id="button1"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                09:00 PM
+              </button>
+              <button   id="button2"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                10:00 AM
+              </button>
+              <button    id="button3" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                11:00 AM
+              </button>
+              <button  id="button4"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                12:00 PM
+              </button>
+              <button   id="button5"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                01:00 PM
+              </button>
+              <button   id="button6" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                2:00 PM
+              </button>
+              <button  id="button7"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                5:00 PM
+              </button>
+              <button  id="button8"  type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                6:00 PM
+              </button>
+              <button  id="button9" id="myButton" type="button" class="button border hover:bg-blue-100 text-black font-bold py-2 px-4 rounded">
+                7:00 PM
+              </button>
+
+            </div>
+          </div>
+          <button  type="submit" class=" w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px- rounded-xl text-xl">
+            Book Appointment
+          </button>
+          </div>        
+
+    </div>
+</div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+
+
+// document.getElementById("department").addEventListener("onchange", click(document.getElementById("department").value));
+
+$('#department').change(function() {
+  if(document.getElementById('department').value != '0'){
+    document.getElementById("depBtn").click();
+  }
+}).trigger('change');
+
+let selectedButton = null;
+let selectedValue = null;
+const buttons = document.querySelectorAll(".button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // unselect previously selected button
+    if (selectedButton && selectedButton !== button) {
+      selectedButton.classList.remove("bg-blue-500", "text-white", "font-bold");
+    }
+    // toggle selected state of clicked button
+    button.classList.toggle("bg-blue-500");
+    button.classList.toggle("text-white");
+    button.classList.toggle("font-bold");
+    // update selected button and value variables
+    if (button.classList.contains("bg-blue-500")) {
+      selectedButton = button;
+      selectedValue = button.getAttribute("data-value");
+    } else {
+      selectedButton = null;
+      selectedValue = null;
+    }
+  });
+});
+</script> 
+
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/script123.js"></script>
+
+</body>
+  
+</html>
