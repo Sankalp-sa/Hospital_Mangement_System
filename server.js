@@ -44,6 +44,7 @@ connection.connect(function (err) {
 // app.get("/doctor", function (req,res){
 //   res.render("docter");
 // })
+// })
 
 // Doctor
 
@@ -58,10 +59,6 @@ app.get("/DocViewappointment", function(req,res){
 app.get("/DocProfile", function(req,res){
   res.render("doctor_profile");
 })
-
-
-
-
 
 // Home page 
 
@@ -215,11 +212,13 @@ app.get('/appointment', function(req,res){
 })
 
 let finalDep;
+let finaldoctorD;
 app.post('/enableDoc', function(req,res){
   let dep = req.body.department;
   finalDep = dep;
   connection.query(`select * from doctor where department = '${dep}'`, function(err,result){
-    res.render('bookap1', {department: dep, patientD: patientDetails, img: imageExt,docDetails: result, dep: docDepartment});
+    finaldoctorD = result;
+    res.render('bookap1', {message: undefined,department: dep, patientD: patientDetails, img: imageExt,docDetails: result, dep: docDepartment});
   });
 })
 
@@ -233,9 +232,12 @@ app.post("/bookapp", function(req,res){
   const {doctor, date, timeslot} = req.body;
 
   connection.query(`insert into appointment(name, mobile, date, department, timeSlot, doctorName, p_id) values('${patientDetails[0].pname}','${patientDetails[0].phone}','${date}','${finalDep}','${timeslot}','${doctor}','${patientDetails[0].p_id}')`, function(err,result){
-    if(err) console.log(err);
+    if(err){
+      console.error(err.message); 
+      res.render("bookap1", {message: err.message,department: finalDep, patientD: patientDetails, img: imageExt,docDetails: finaldoctorD, dep: docDepartment});
+    }
     else{
-      console.log(result);
+      console.log("Appointment booked");
     }
   })
 
@@ -284,37 +286,77 @@ app.get("/dprofile", function(req,res){
   res.render("dprofile");
 })
 
+// Docter Login :
+
+app.get("/dLogin", function(req,res){
+
+  res.render("D_login");
+})
+
+app.post("/dLogin" ,function(req,res){
+
+  const {username, password} = req.body;
+
+  connection.query(`select * from doctor where duname = '${uname}'`, function(error,result){
+    if(error) console.log(error);
+
+    console.log(result)
+
+    if(result.length > 0){
+      if(bcrypt.compare(pass,result[0].ppass)){
+        console.log("User logged in")
+        patientDetails = result;
+        imageExt = path.extname(result[0].imageUrl);
+        res.render("welcome", { patientDetails: result, extension: path.extname(result[0].imageUrl)});
+      }
+      else{
+        console.log("Worng pass");
+        res.render("patientLogin", {message: "Worng password"})
+      }
+    }
+    else{
+      res.render("patientLogin",{message: "Patient not found"});
+    }
+  })
+})
+
 // Docter Register
 
 app.get("/doctorReg", function(req,res){
 
-  res.render("dregister");
+  res.render("dregister", {message: undefined});
 })
 
-app.post("/doctorReg", upload.single("image") ,function (req,res){
+app.post("/doctorReg", upload.single("image") , async function (req,res){
 
   let uname = req.body.uname;
   let dname = req.body.dname;
   let dep = req.body.dep;
   let ddesc = req.body.ddesc;
+  let gender = req.body.gender;
+  let pass = req.body.pass;
   let fileName = req.file.originalname;
 
   // console.log(req.body);
   // console.log(req.file);
 
-  connection.query(`insert into doctor(d_id, dname, department, img, ddesc) values('${uname}','${dname}','${dep}','${fileName}','${ddesc}');`, function (err, result, fields) {
+  let hashedpass = await bcrypt.hash(pass, 8);
+  console.log(hashedpass);
+
+  connection.query(`insert into doctor(dname, department, img, ddesc, duname, gender, password) values('${dname}','${dep}','${fileName}','${ddesc}','${uname}','${gender}', '${hashedpass}');`, function (err, result, fields) {
     if(err){
-      console.log(err);
+      console.log(err.message);
+      res.render("dregister", {message:err.message});
     }
-    console.log(result);
+    else{
+      res.render("dregister", {message: "Dotoer logged in"})  ;
+    }
   });
 
   console.log(uname);
-  res.render("dregister");
+  
   
 })
-
-
 
 // Patient Login 
     
