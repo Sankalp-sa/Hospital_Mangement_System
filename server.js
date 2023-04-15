@@ -51,6 +51,17 @@ app.get("/doctor", function(req,res){
   res.render("Doctor_index");
 })
 
+app.get("/DocViewappointment", function(req,res){
+  res.render("DocViewApp");
+})
+
+app.get("/DocProfile", function(req,res){
+  res.render("doctor_profile");
+})
+
+
+
+
 
 // Home page 
 
@@ -203,11 +214,31 @@ app.get('/appointment', function(req,res){
 
 })
 
+let finalDep;
 app.post('/enableDoc', function(req,res){
   let dep = req.body.department;
+  finalDep = dep;
   connection.query(`select * from doctor where department = '${dep}'`, function(err,result){
     res.render('bookap1', {department: dep, patientD: patientDetails, img: imageExt,docDetails: result, dep: docDepartment});
   });
+})
+
+// app.post('/enableTime', function(req,res){
+//   let dep = req.body.department;
+//   let doctor = req.body.doctor;
+// })
+
+app.post("/bookapp", function(req,res){
+
+  const {doctor, date, timeslot} = req.body;
+
+  connection.query(`insert into appointment(name, mobile, date, department, timeSlot, doctorName, p_id) values('${patientDetails[0].pname}','${patientDetails[0].phone}','${date}','${finalDep}','${timeslot}','${doctor}','${patientDetails[0].p_id}')`, function(err,result){
+    if(err) console.log(err);
+    else{
+      console.log(result);
+    }
+  })
+
 })
 
 // View Doctor
@@ -220,7 +251,7 @@ app.get("/viewDoc", function(req,res){
   connection.query(`select distinct department from doctor`, function(err,result){
     if(err) console.log(err);
     console.log(result)
-    res.render("viewdoctor", {dep:result,patientD: patientDetails, img: imageExt});
+    res.render("viewdoctor", {dep:result, patientD: patientDetails, img: imageExt});
 
   })
 
@@ -298,81 +329,18 @@ app.post("/docDetails", function(req,res){
   })
 })
 
+// View Patient appointment
 
-// app.get('/patient', function(req,res){
+app.get('/viewappointment', function(req,res){
 
-//   connection.query('SELECT * FROM appointment ORDER BY date, timeSlot', function(err,result, fields){
-//     if(err) console.log(err)
-//     res.render("patient", {patient:result})
-//   })
+  connection.query(`SELECT * FROM appointment where p_id = ${patientDetails[0].p_id} ORDER BY date, timeSlot`, function(err,result, fields){
+    if(err) console.log(err)
+    res.render("viewappointment", {patientD: patientDetails, img: imageExt, appointments:result})
+  })
 
-// })
+})
 
-// app.post("/patient", function(req,res){
 
-//   var cancer = req.body.cancer
-//   var dental = req.body.dental
-//   var mental = req.body.mental
-//   var all = req.body.all
-
-//   if(cancer != undefined){
-//     connection.query(`select * from appointment where department='Cancer'`, function (err, result, fields) {
-//       if(err){
-//         console.log(err);
-//       }
-//       console.log(result);
-//       res.render("patient", {patient:result});
-//     });
-//   }
-
-//   if(dental != undefined){
-//     connection.query(`select * from appointment where department='Dental'`, function (err, result, fields) {
-//       if(err){
-//         console.log(err);
-//       }
-//       console.log(result);
-//       res.render("patient", {patient:result});
-//     });
-//   }
-
-//   if(mental != undefined){
-//     connection.query(`select * from appointment where department='Mental'`, function (err, result, fields) {
-//       if(err){
-//         console.log(err);
-//       }
-//       console.log(result);
-//       res.render("patient", {patient:result});
-//     });
-//   }
-
-//   if(all != undefined){
-//     connection.query(`SELECT * FROM appointment ORDER BY date, timeSlot`, function (err, result, fields) {
-//       if(err){
-//         console.log(err);
-//       }
-//       console.log(result);
-//       res.render("patient", {patient:result});
-//     });
-//   }
-// })
-
-// app.post("/appointment", function (req, res) {
-
-//     var name = req.body.name
-//     var mobile = req.body.mobile
-//     var date = req.body.date
-//     var dep = req.body.dep
-//     var time = req.body.time
-
-//     connection.query(`insert into appointment(name,mobile,date,department,timeSlot) values('${name}','${mobile}','${date}','${dep}','${time}');`, function (err, result, fields) {
-//       if(err){
-//         console.log(err);
-//       }
-//       console.log(result);
-//     });
-
-//     res.redirect('/appointment');
-// });
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
