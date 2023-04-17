@@ -137,13 +137,13 @@ app.post("/pReg", upload.single("image") ,function(req,res){
     let hashedpass = await bcrypt.hash(pass, 8);
     console.log(hashedpass);
 
-    connection.query(`insert into patient(pemail,ppass,imageUrl,puname,pname,phone,Gender,BirthDate,address) values('${email}','${hashedpass}','${imageUrl}','${uname}','${name}','${phone}','${Gender}','${birthDate}','${address}')`, function(err,result){
+    connection.query(`call ADD_PATIENT('${email}','${hashedpass}','${imageUrl}','${uname}','${name}','${phone}','${Gender}','${birthDate}','${address}')`, function(err,result){
       if(err) {
         console.log(err)
       }
       else{
         console.log(result);
-        return res.render("patientReg", {message: "User Registered"})
+        return res.render("patientReg", {message: "Patient Register successfully"});
       }
     })
     
